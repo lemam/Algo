@@ -15,25 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\11720_숫자의_합.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\1065_한수.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\1152_단어의_개수.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\1157_단어_공부.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\2675_문자열_반복.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\4673_셀프_넘버.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Algorithm\Baekjoon\Baekjoon\10809_알파벳_찾기.cpp">
+    <ClCompile Include="2908_상수.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
