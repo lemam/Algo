@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2941_크로아티아_알파벳.cpp">
+    <ClCompile Include="1316_그룹_단어_체커.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
