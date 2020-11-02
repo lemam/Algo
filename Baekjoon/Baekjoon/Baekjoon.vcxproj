@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1193_분수찾기.cpp" />
+    <ClCompile Include="10250_ACM_호텔.cpp" />
+    <ClCompile Include="2869_달팽이는_올라가고_싶다.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
