@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2869_달팽이는_올라가고_싶다.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="10250_ACM_호텔.cpp">
+    <ClCompile Include="2775_부녀회장이_될테야.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
