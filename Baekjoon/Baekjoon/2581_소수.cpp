@@ -1,4 +1,19 @@
 #include <iostream>
+#include <math.h>
+
+bool isPrime(int n)
+{
+	if (n <= 1)
+		return false;
+
+	for (int i = 2; i <= sqrt(n); i++)	// 소수 구하기*
+	{
+		if ((n % i) == 0)
+			return false;
+	}
+
+	return true;
+}
 
 int main()
 {
@@ -6,39 +21,19 @@ int main()
 
 	std::cin >> M >> N;
 
-	int size = N - M + 1;
-
-	for (int i = 0; i < size; i++)
+	for (int i = M; i <= N; i++)
 	{
-		int p = M + i;
-		int j = 2;
-
-		if (p == 1)
-			continue;
-		if (p == 2)
-		{
-			sum += p;
-			min = p;
-			continue;
-		}
-
-		for (j; j < p; j++)
-		{
-			if (p % j == 0)
-				break;
-		}
-
-		if (p == j)
+		if (isPrime(i))
 		{
 			if (min == 0)
-				min = p;
-			sum += p;
+				min = i;
+			sum += i;
 		}
 	}
-	if (sum == 0 && min == 0)
-		std::cout << -1;
-	else
+	if (sum)
 		std::cout << sum << std::endl << min;
-	
+	else
+		std::cout << "-1";
+
 	return 0;
 }
