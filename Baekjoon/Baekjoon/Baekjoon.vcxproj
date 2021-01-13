@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="10757_큰_수_A+B.cpp" />
+    <ClCompile Include="1011_Fly_me_to_the_Alpha_Centauri.cpp" />
+    <ClCompile Include="1978_소수_찾기.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
