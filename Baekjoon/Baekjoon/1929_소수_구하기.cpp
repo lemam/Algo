@@ -2,17 +2,28 @@
 #include <math.h>
 using namespace std;
 
+int d[] = { 2, 3, 5 ,7 };
+
 bool prime(int n)
 {
-	if (n == 1)
-		return false;
-
-	for (int i = 2; i <= sqrt(n); i++)
+	if (n < 10)
 	{
-		if (n % i == 0)
-			return false;
+		for (int i = 0; i < 4; i++)
+		{
+			if (n == d[i])
+				return true;
+		}
 	}
-	return true;
+	else
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (n % d[i] == 0)
+				return false;
+		}
+		return true;
+	}
+	return false;
 }
 
 int main()
@@ -25,6 +36,5 @@ int main()
 		if (prime(i))
 			cout << i << endl;
 	}
-
 	return 0;
 }
