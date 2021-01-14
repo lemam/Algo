@@ -2,30 +2,29 @@
 
 void factor(int n)
 {
-	if (n == 1)
-		return;
-
 	int i = 2;
-	while (i != n)
+	for (i; i * i <= n;)
 	{
-		for (i = 2; i < n; i++)
+		if (n % i == 0)
 		{
-			if (n % i == 0)
-			{
-				n /= i;
-				std::cout << i << std::endl;
-				break;
-			}
+			std::cout << i << std::endl;
+			n /= i;
 		}
+		else
+			i++;
 	}
-	std::cout << n;
+
+	if (n != 1)
+		std::cout << n << std::endl;
 }
 
 int main()
 {
 	int N;
 	std::cin >> N;
-	factor(N);
+
+	if (N != 1)
+		factor(N);
 
 	return 0;
 }
