@@ -1,29 +1,31 @@
 #include <iostream>
-#include <math.h>
 using namespace std;
 
-int d[] = { 2, 3, 5 ,7 };
+int p[1000001] = { 0, };
 
-bool prime(int n)
+// 에라토스테네스의 체 원리
+void prime(int m, int n)
 {
-	if (n < 10)
+	// M 이상 N 이하 소수 구하기
+	for (int i = m; i <= n; i++)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (n == d[i])
-				return true;
-		}
+		p[i] = i;
 	}
-	else
+
+	// 처음 숫자를 제외한 배수 제거 (2부터)
+	p[1] = 0;
+	for (int i = 2; i <= n; i++)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (n % d[i] == 0)
-				return false;
-		}
-		return true;
+		for (int j = 2 * i; j <= n; j += i)
+			p[j] = 0;
 	}
-	return false;
+
+	// 출력
+	for (int i = 2; i <= n; i++)
+	{
+		if (p[i] != 0)
+			cout << p[i] << '\n';
+	}
 }
 
 int main()
@@ -31,10 +33,6 @@ int main()
 	int M, N;
 	cin >> M >> N;
 
-	for (int i = M; i <= N; i++)
-	{
-		if (prime(i))
-			cout << i << endl;
-	}
+	prime(M, N);
 	return 0;
 }
