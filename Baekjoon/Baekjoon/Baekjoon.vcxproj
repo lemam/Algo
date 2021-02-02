@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1011_Fly_me_to_the_Alpha_Centauri.cpp" />
-    <ClCompile Include="4948_베르트랑 공준.cpp" />
+    <ClCompile Include="9020_골드바흐의_추측.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
