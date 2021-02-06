@@ -18,8 +18,5 @@
     <ClCompile Include="1011_Fly_me_to_the_Alpha_Centauri.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="9020_골드바흐의_추측.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

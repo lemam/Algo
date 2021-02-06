@@ -1,41 +1,27 @@
-//#include <iostream>
-//
-//int Count(int x, int y);
-//
-//int main()
-//{
-//	int T, x, y;
-//
-//	std::cin >> T;
-//	for (int i = 0; i < T; i++)
-//	{
-//		std::cin >> x >> y;
-//		std::cout << Count(x, y);
-//	}
-//	return 0;
-//}
-//
-//int Count(int x, int y)
-//{
-//	int curX = x;
-//	int cnt = 0;
-//	int k = 0;
-//	int td = 0;
-//
-//	while (curX != y)
-//	{
-//		int dir = y - curX;
-//
-//		if (dir - td > k)
-//		{
-//			k++;
-//			td += k;
-//		}
-//		else if (dir - td < 0)
-//			k--;
-//		
-//		curX += k;
-//		cnt++;
-//	}
-//	return cnt;
-//}
+#include <iostream>
+#include <math.h>
+
+int main()
+{
+	int T;
+	long x, y;
+
+	std::cin >> T;
+	for (int t = 0; t < T; t++)
+	{
+		std::cin >> x >> y;
+		int d = y - x;
+		int i = 1;
+		for (i; ; i++)
+			if(pow(i, 2) > d)
+				break;
+
+		if (pow(i - 1, 2) == d)	// 제곱근일 경우
+			std::cout << 2 * (i - 2) + 1 << "\n";
+		else if ((pow(i-1, 2) + pow(i, 2)) / 2 < d)	// 제곱근 사이 중간
+			std::cout << 2 * (i - 2) + 3 << "\n";
+		else
+			std::cout << 2 * (i - 2) + 2 << "\n";	// 제곱근 아래
+	}
+	return 0;
+}
