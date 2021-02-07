@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1011_Fly_me_to_the_Alpha_Centauri.cpp" />
+    <ClCompile Include="1085_직사각형에서_탈출.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
