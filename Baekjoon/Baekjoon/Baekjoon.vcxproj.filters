@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="11654_아스키_코드.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="15596_정수_N개의_합.cpp">
+    <ClCompile Include="3009_네_번째_점.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
