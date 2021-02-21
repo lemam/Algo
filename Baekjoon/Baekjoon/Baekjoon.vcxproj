@@ -19,8 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1002_터렛.cpp" />
-    <ClCompile Include="3053_택시_기하학.cpp" />
+    <ClCompile Include="1003_피보나치_함수.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
