@@ -11,7 +11,10 @@ int main()
 		int a, b;
 		cin >> a >> b;
 
-		long result = a % 10;	// a >= 10, b < 2일 경우를 방지 
+		long result = a % 10;
+		if (b >= 4)		// 최대 4주기마다 같은 숫자 반복
+			b = b % 4 + 4;
+
 		for (int i = 2; i <= b; i++)
 			result = (result * a) % 10;
 		
