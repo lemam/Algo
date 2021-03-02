@@ -7,19 +7,16 @@ int main()
 	string str, result;
 
 	cin >> N;
-	cin >> str;
-	result = str;
+	cin >> result;
+	int size = result.length();
 
-	for (int i = 0; i < N - 1; i++)
+	while (--N)
 	{
 		cin >> str;
-		for (int j = 0; j < str.length(); j++)
-		{
-			if (str.at(j) != result.at(j))
-				result.at(j) = '?';
-		}
+		for (int i = 0; i < size; i++)
+			if (result[i] != '?' && result[i] != str[i])
+				result[i] = '?';
 	}
-
 	cout << result;
 
 	return 0;
