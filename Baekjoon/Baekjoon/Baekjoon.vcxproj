@@ -19,9 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1000_A+B.cpp" />
-    <ClCompile Include="1001_A-B.cpp" />
-    <ClCompile Include="1008_A_divided_by_B.cpp" />
+    <ClCompile Include="1075_나누기.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
