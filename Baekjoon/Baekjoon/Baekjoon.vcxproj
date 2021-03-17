@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1032_명령_프롬프트.cpp" />
+    <ClCompile Include="1000_A+B.cpp" />
+    <ClCompile Include="1001_A-B.cpp" />
+    <ClCompile Include="1008_A_divided_by_B.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
