@@ -1,30 +1,25 @@
 #include <iostream>
-#include <map>
 using namespace std;
 
 int main() {
-	int N;
-	string result;
-	map<char, int> map;
-	std::map<char, int>::iterator it;
+	int a[26] = { 0, }, N, i;
+	string d;
 
-	// insert map
 	cin >> N;
-	while (N--)
-	{
-		string name;
-		cin >> name;
-		char i = name[0];
-		map[i]++;
+	while (N--) {
+		cin >> d;
+		a[d[0] - 'a']++;
 	}
 
-	// find
-	for (it = map.begin(); it != map.end(); it++) {
-		if (it->second >= 5)
-			result += it->first;
+	for (int i = 0; i < 26; i++) {
+		if (a[i] >= 5) {
+			cout << (char)(i + 'a');
+			N++;
+		}
 	}
-	result = result.length() == 0 ? "PREDAJA" : result;
-	cout << result;
+	if (N < 0) {
+		cout << "PREDAJA";
+	}
 
 	return 0;
 }
