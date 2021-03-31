@@ -1,25 +1,24 @@
 #include <string>
 #include <vector>
+#include <set>
 
 using namespace std;
 
 vector<int> solution(vector<int> numbers) {
 	vector<int> answer;
-	int count[201] = { 0, };
+	set<int> s;
 
-	for (int i = 0; i < numbers.size() - 1; i++)
-	{
-		for (int j = i + 1; j < numbers.size(); j++)
-		{
-			int n = numbers[i] + numbers[j];
-			count[n]++;
+	for (int i = 0; i < numbers.size(); i++) {
+		for (int j = i + 1; j < numbers.size(); j++) {
+			// set
+			// key 값은 중복이 허용되지 않음
+			// 원소는 자동으로 정렬 (오름차순)
+			s.insert(numbers[i] + numbers[j]);
 		}
-	}
-
-	for (int i = 0; i < 201; i++)
-	{
-		if (count[i] > 0)
-			answer.push_back(i);
+		// 벡터 객체에 있는 원소들을 모두 삭제하고 인자를 집어 넣음.
+		// void assign(InputIterator first, InputIterator last);
+		// void assign(size_type n, const T & u);
+		answer.assign(s.begin(), s.end());
 	}
 
 	return answer;
