@@ -18,5 +18,8 @@
     <ClCompile Include="1173_운동.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1212_8진수_2진수.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
