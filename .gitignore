@@ -5,7 +5,11 @@
 
 # Custom
 *.sln
+*.vcproj
+*.vcproj.*.user
+*.vcxproj.user
 *.vcxproj
+*.vcxproj.filters
 
 # User-specific files
 *.rsuser
