@@ -2,22 +2,16 @@
 
 using namespace std;
 
+long long A, B;
+string strA, strB;
+
 int main() {
 
-	string strA, strB;
 	cin >> strA >> strB;
 
-	int lenA = strA.length();
-	int lenB = strB.length();
-	long long result = 0;
-
-	for (int i = 0; i < lenA; i++) {
-		for (int j = 0; j < lenB; j++) {
-			result += (strA[i] - '0') * (strB[j] - '0');
-		}
-	}
-
-	cout << result;
+	for (char c : strA) A += c - '0';
+	for (char c : strB) B += c - '0';
+	cout << A * B;
 
 	return 0;
 }
