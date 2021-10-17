@@ -6,27 +6,25 @@ for (let i = 0; i < input.length; i++) {
   dices[i] = Number(input[i]);
 }
 
-let sumMap = new Map();
-let result = 0,
-  cnt = 0;
+let sum = new Array(81);
+sum.fill(0);
+
+let cnt = 0;
+let result = 0;
 
 for (let i = 1; i <= dices[0]; i++) {
   for (let j = 1; j <= dices[1]; j++) {
     for (let k = 1; k <= dices[2]; k++) {
-      let sum = i + j + k;
-      if (sumMap.has(sum)) sumMap.set(sum, sumMap.get(sum) + 1);
-      else sumMap.set(sum, 1);
+      sum[i + j + k] += 1;
     }
   }
 }
 
-sumMap.forEach((value, key) => {
-  console.log(`key : ${key}, value : ${value}`);
-
-  if (cnt < value) {
-    cnt = value;
-    result = key;
+for (let i = 1; i < sum.length; i++) {
+  if (cnt < sum[i]) {
+    cnt = sum[i];
+    result = i;
   }
-});
+}
 
 console.log(result);
