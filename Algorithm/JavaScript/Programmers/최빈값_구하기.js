@@ -1,21 +1,7 @@
 function solution(array) {
-  let arr = new Array(1000).fill(0);
-  var answer = 0;
+  let map = new Map();
+  for (let num of array) map.set(num, (map.get(num) || 0) + 1);
+  let arr = [...map].sort((a, b) => b[1] - a[1]);
 
-  array.forEach(el => arr[el]++);
-  console.log(arr);
-
-  let cnt = 0;
-  let temp = 0;
-  arr.forEach((el, idx) => {
-    if (el > temp) {
-      temp = el;
-      cnt = 0;
-      answer = idx;
-    } else if (el === temp) {
-      cnt++;
-    }
-  });
-
-  return cnt ? -1 : answer;
+  return arr.length === 1 || arr[0][1] > arr[1][1] ? arr[0][0] : -1;
 }
