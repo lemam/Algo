@@ -11,6 +11,8 @@
 *.vcxproj
 *.vcxproj.filters
 *.vscode
+index.html
+index.js
 
 # User-specific files
 *.rsuser
