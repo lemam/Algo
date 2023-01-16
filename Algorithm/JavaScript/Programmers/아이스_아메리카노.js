@@ -1,4 +1,3 @@
 function solution(money) {
-  let cnt = parseInt(money / 5500);
-  return [cnt, money - 5500 * cnt];
+  return [Math.floor(money / 5500), money % 5500];
 }
