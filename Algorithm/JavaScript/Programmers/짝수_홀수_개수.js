@@ -1,10 +1,9 @@
 function solution(num_list) {
   var answer = [0, 0];
 
-  num_list.forEach(el => {
-    if (el % 2) answer[1]++;
-    else answer[0]++;
-  });
+  for (const num of num_list) {
+    answer[num % 2] += 1;
+  }
 
   return answer;
 }
