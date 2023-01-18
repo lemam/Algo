@@ -1,12 +1,9 @@
 function solution(n) {
-  let div = [];
+  var answer = 0;
 
-  for (let i = 0; i <= Math.sqrt(n); i++) {
-    if (n % i === 0) {
-      div.push(i);
-      if (n / i != i) div.push(n / i);
-    }
+  for (let i = 1; i < Math.sqrt(n); i++) {
+    if (n % i === 0) answer += 2;
   }
 
-  return div.length;
+  return Number.isInteger(Math.sqrt(n)) ? answer + 1 : answer;
 }
