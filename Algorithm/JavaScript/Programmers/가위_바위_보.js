@@ -1,5 +1,9 @@
 function solution(rsp) {
-  let arr = ["2", "0", "5"];
+  let arr = {
+    2: 0,
+    0: 5,
+    5: 2,
+  };
 
-  return [...rsp].map(x => arr[(arr.indexOf(x) + 1) % 3]).join("");
+  return [...rsp].map(x => arr[x]).join("");
 }
