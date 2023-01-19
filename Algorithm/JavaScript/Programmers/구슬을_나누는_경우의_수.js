@@ -1,11 +1,7 @@
+const factorialize = num => (num === 0 ? 1 : num * factorialize(num - 1));
+
 function solution(balls, share) {
-  let n = 1;
-  let d = 1;
-
-  for (let i = 0; i < share; i++) {
-    n *= balls - i;
-    d *= share - i;
-  }
-
-  return n / d;
+  return Math.round(
+    factorialize(balls) / factorialize(balls - share) / factorialize(share)
+  );
 }
