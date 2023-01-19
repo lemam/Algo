@@ -28,8 +28,5 @@ morse = {
 };
 
 function solution(letter) {
-  return letter
-    .split(" ")
-    .map(str => morse[str])
-    .join("");
+  return letter.split(" ").reduce((prev, curr) => prev + morse[curr], "");
 }
