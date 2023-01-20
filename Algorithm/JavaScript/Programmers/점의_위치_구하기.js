@@ -1,6 +1,6 @@
 function solution(dot) {
-  if (dot[0] > 0 && dot[1] > 0) return 1;
-  else if (dot[0] < 0 && dot[1] > 0) return 2;
-  else if (dot[0] < 0 && dot[1] < 0) return 3;
-  else return 4;
+  let [x, y] = dot;
+  let isEven = x * y > 0;
+
+  return x > 0 ? (isEven ? 1 : 4) : isEven ? 3 : 2;
 }
