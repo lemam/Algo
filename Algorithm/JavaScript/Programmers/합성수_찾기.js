@@ -1,13 +1,9 @@
 function solution(n) {
-  let dp = new Array(n + 1).fill(1);
+  let base = Array.from(Array(n), (_, i) => i + 1);
 
-  for (let i = 2; i <= n; i++) {
-    if (dp[i]) {
-      for (let j = 2; i * j <= n; j++) {
-        dp[i * j] = 0;
-      }
-    }
+  for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {
+    base = base.filter(el => el % i != 0 || el <= i);
   }
 
-  return dp.filter(el => el === 0).length;
+  return n - base.length;
 }
