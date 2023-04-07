@@ -1,6 +1,3 @@
 function solution(my_string) {
-  return [...my_string]
-    .filter(v => !isNaN(v))
-    .map(x => Number(x))
-    .reduce((prev, curr) => (prev += curr));
+  return my_string.match(/\d/g).reduce((acc, cur) => acc + Number(cur), 0);
 }
