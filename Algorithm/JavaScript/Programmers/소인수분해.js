@@ -1,19 +1,12 @@
 function solution(n) {
-  const set = new Set();
-  let num = n;
-  let m = 2;
+  let answer = [];
 
-  while (num !== 1) {
-    if (num % m) {
-      m++;
-      continue;
+  for (let i = 2; i <= n; i++) {
+    while (n % i === 0) {
+      n = n / i;
+      answer.push(i);
     }
-
-    num /= m;
-    set.add(m);
-    m = 2;
   }
 
-  let answer = Array.from(set);
-  return answer;
+  return [...new Set(answer)];
 }
