@@ -1,11 +1,10 @@
 function solution(s) {
-  let answer = 0;
-  let arr = s.split(" ");
+  const stack = [];
 
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if (isNaN(Number(arr[i]))) i--;
-    else answer += Number(arr[i]);
-  }
+  s.split(" ").forEach(ch => {
+    if (ch === "Z") stack.pop();
+    else stack.push(+ch);
+  });
 
-  return answer;
+  return stack.length ? stack.reduce((acc, cur) => acc + cur) : 0;
 }
