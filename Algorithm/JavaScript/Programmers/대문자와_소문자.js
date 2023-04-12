@@ -1,8 +1,7 @@
 function solution(my_string) {
-  return my_string
-    .split("")
+  return [...my_string]
     .map(x => {
-      if (/[A-Z]/.test(x)) return x.toLowerCase();
+      if (x < "a") return x.toLowerCase();
       else return x.toUpperCase();
     })
     .join("");
