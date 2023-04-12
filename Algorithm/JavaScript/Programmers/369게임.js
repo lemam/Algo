@@ -1,10 +1,7 @@
 function solution(order) {
-  let answer = 0;
-  let str = order + "";
+  const mySet = new Set([3, 6, 9]);
 
-  str.split("").map(x => {
-    if (Number(x) > 0 && Number(x) % 3 === 0) answer++;
-  });
-
-  return answer;
+  return String(order)
+    .split("")
+    .filter(num => mySet.has(Number(num))).length;
 }
