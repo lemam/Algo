@@ -1,3 +1,10 @@
+// param {Number} n
+// return {Array<Number>} n의 약수를 오름차순으로 담은 배열
+
+// example
+// n      = 24
+// result = [1, 2, 3, 4, 6, 8, 12, 24]
+
 function solution(n) {
   let answer = [];
   let num = Math.sqrt(n);
