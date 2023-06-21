@@ -1,17 +1,18 @@
+// 영어로 표기되어 있는 숫자를 수로 바꾸기
+
+// param {String} numbers
+// return {Number} numbers를 정수로 바꾼 값
+
+// example
+// numbers : "onetwothreefourfivesixseveneightnine"
+// return  : 123456789
+
 function solution(numbers) {
-  const numArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-  let answer = "";
-  let idx = 0;
+  const numStr = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
-  while (idx < numbers.length) {
-    for (let i = 0; i < numArray.length; i++) {
-      if (numbers.startsWith(numArray[i], idx)) {
-        answer += i;
-        idx += numArray[i].length;
-        break;
-      }
-    }
-  }
+  numStr.forEach((str, idx) => {
+    numbers = numbers.replaceAll(str, idx);
+  });
 
-  return Number(answer);
+  return Number(numbers);
 }
