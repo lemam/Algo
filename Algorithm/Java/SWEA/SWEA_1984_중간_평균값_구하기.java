@@ -11,6 +11,22 @@ import java.util.Scanner;
  */
 
 public class SWEA_1984_중간_평균값_구하기 {
+	// 버블 정렬
+	public static int[] bubbleSort(int[] arr) {
+		int n = arr.length;
+
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 1; j < n - i; j++) {
+				if (arr[j - 1] > arr[j]) {
+					int temp = arr[j];
+					arr[j] = arr[j - 1];
+					arr[j - 1] = temp;
+				}
+			}
+		}
+		return arr;
+	}
+
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 
@@ -18,29 +34,18 @@ public class SWEA_1984_중간_평균값_구하기 {
 
 		for (int t = 1; t <= T; t++) {
 			int[] nums = new int[10];
-			int min = Integer.MAX_VALUE;
-			int max = Integer.MIN_VALUE;
 
 			// 10개의 수 배열에 저장
 			for (int i = 0; i < 10; i++) {
 				nums[i] = sc.nextInt();
-
-				// 최솟값 저장
-				if (min > nums[i])
-					min = nums[i];
-
-				// 최댓값 저장
-				if (max < nums[i])
-					max = nums[i];
 			}
+
+			nums = bubbleSort(nums);
 
 			double sum = 0;
 
 			// 최솟값과 최댓값을 제외한 모든 수의 합
-			for (int i = 0; i < 10; i++) {
-				if (nums[i] == min || nums[i] == max)
-					continue;
-
+			for (int i = 1; i < 9; i++) {
 				sum += nums[i];
 			}
 
