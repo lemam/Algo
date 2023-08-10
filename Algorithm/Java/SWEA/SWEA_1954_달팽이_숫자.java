@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class SWEA_1954_달팽이_숫자 {
 	public static void main(String[] args) throws Exception {
-		Scanner sc = new Scanner(new File("input.txt"));
+		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 
 		// 3 6 9 12
