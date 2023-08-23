@@ -14,64 +14,55 @@ import java.util.Stack;
  * 정점 번호는 1부터 N까지의 정수로 구분되고 루트 정점의 번호는 항상 1이다.
  */
 
-
 public class SWEA_1232_사칙연산 {
-	static class Node {
-		String data; // 데이터
-		int left; // 왼쪽 자식 노드 번호
-		int right; // 오른쪽 자식 노드 번호
+	private static class Node {
+		public String data; // 데이터
+		public int left; // 왼쪽 자식 노드 번호
+		public int right; // 오른쪽 자식 노드 번호
 
 		public Node() {
 		}
-
-		public Node(String data) {
-			this.data = data;
-		}
-
-		public void setLeft(int left) {
-			this.left = left;
-		}
-
-		public void setRight(int right) {
-			this.right = right;
-		}
 	}
 
-	
-	public static Node[] tree;
-	public static int N;
+	public static Node[] nodes;
 	public static Stack<String> stack;
 
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
-		int T = 10;	// 테스트 케이스
+		int T = 10; // 테스트 케이스
 
 		for (int tc = 1; tc <= T; tc++) {
-			N = Integer.parseInt(sc.nextLine()); // 정점의 개수
-			tree = new Node[N + 1];
-			stack = new Stack<>();
+			int N = Integer.parseInt(sc.nextLine());
+			nodes = new Node[N + 1];
 
-			// 트리 입력
-			for (int i = 0; i < N; i++) {
+			// 노드 생성
+			for (int i = 1; i <= N; i++) {
+				nodes[i] = new Node();
+			}
+
+			// 트리 생성
+			for (int i = 1; i <= N; i++) {
 				String[] str = sc.nextLine().split(" ");
-
 				int num = Integer.parseInt(str[0]); // 정점 번호
 				String data = str[1]; // 정점 데이터
 
-				// 노드 생성
-				Node node = new Node(data);
+				// 데이터 추가
+				nodes[num].data = data;
 
-				// 자식 노드 번호 넣기
 				if (str.length >= 3) {
-					node.setLeft(Integer.parseInt(str[2])); // 왼쪽
+					// 왼쪽 자식 노드 연결
+					int left = Integer.parseInt(str[2]);
+					nodes[num].left = left;
 
-					if (str.length == 4)
-						node.setRight(Integer.parseInt(str[3])); // 오른쪽
+					// 오른쪽 자식 노드 연결
+					if (str.length == 4) {
+						int right = Integer.parseInt(str[3]);
+						nodes[num].right = right;
+					}
 				}
-
-				// 트리 배열에 노드 넣기
-				tree[num] = node;
 			}
+
+			stack = new Stack<String>();
 
 			postorder(1);
 
@@ -82,43 +73,45 @@ public class SWEA_1232_사칙연산 {
 	}
 
 	// 후위 순회
-	public static void postorder(int i) {
-		if (i <= N) {
-			Node node = tree[i];
+	private static void postorder(int i) {
+		Node node = nodes[i];
 
-			if (tree[node.left] != null)
-				postorder(node.left); // L
+		if (nodes[node.left] != null)
+			postorder(node.left);
 
-			if (tree[node.right] != null)
-				postorder(node.right); // R
+		if (nodes[node.right] != null)
+			postorder(node.right);
 
-			// V
-			// 연산자이면 스택에서 두 개의 값을 꺼내 연산한 후 다시 스택에 넣는다.
-			if (node.data.equals("+")) {
-				int B = Integer.parseInt(stack.pop());
-				int A = Integer.parseInt(stack.pop());
+		calc(node);
+	}
 
-				stack.push(Integer.toString(A + B));
-			} else if (node.data.equals("-")) {
-				int B = Integer.parseInt(stack.pop());
-				int A = Integer.parseInt(stack.pop());
+	// 후위 표기법 계산
+	private static void calc(Node node) {
+		// 연산자이면 스택에서 두 개의 값을 꺼내 연산한 후 다시 스택에 넣는다.
+		if (node.data.equals("+")) {
+			int B = Integer.parseInt(stack.pop());
+			int A = Integer.parseInt(stack.pop());
 
-				stack.push(Integer.toString(A - B));
-			} else if (node.data.equals("*")) {
-				int B = Integer.parseInt(stack.pop());
-				int A = Integer.parseInt(stack.pop());
+			stack.push(Integer.toString(A + B));
+		} else if (node.data.equals("-")) {
+			int B = Integer.parseInt(stack.pop());
+			int A = Integer.parseInt(stack.pop());
 
-				stack.push(Integer.toString(A * B));
-			} else if (node.data.equals("/")) {
-				int B = Integer.parseInt(stack.pop());
-				int A = Integer.parseInt(stack.pop());
+			stack.push(Integer.toString(A - B));
+		} else if (node.data.equals("*")) {
+			int B = Integer.parseInt(stack.pop());
+			int A = Integer.parseInt(stack.pop());
 
-				stack.push(Integer.toString(A / B));
-			} 
-			// 피연산자이면 스택에 넣는다.
-			else {
-				stack.push(node.data);
-			}
+			stack.push(Integer.toString(A * B));
+		} else if (node.data.equals("/")) {
+			int B = Integer.parseInt(stack.pop());
+			int A = Integer.parseInt(stack.pop());
+
+			stack.push(Integer.toString(A / B));
+		}
+		// 피연산자이면 스택에 넣는다.
+		else {
+			stack.push(node.data);
 		}
 	}
 }
