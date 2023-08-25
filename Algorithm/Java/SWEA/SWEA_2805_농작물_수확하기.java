@@ -31,19 +31,16 @@ public class SWEA_2805_농작물_수확하기 {
 				}
 			}
 			
-			// 0 ~ N/2 행은 1씩 범위 증가
-			for (int i = 0; i <= N / 2; i++) {
-				for (int j = N / 2 - i; j <= N / 2 + i; j++) {
+			int mid = N / 2;
+			int step = 0;
+			
+			// 행을 순회
+			for (int i = 0; i < N; i++) {
+				for (int j = mid - step; j <= mid + step; j++) {
 					answer += farm[i][j];
-				}
-			}
-
-			// N/2+1 ~ N-1 행은 1씩 범위 감소
-			for (int i = N / 2 + 1; i < N; i++) {
-				int diff = N - i - 1;
-
-				for (int j = N / 2 - diff; j <= N / 2 + diff; j++) {
-					answer += farm[i][j];
+					
+					if (i < mid) step++;
+					else step--;
 				}
 			}
 			
