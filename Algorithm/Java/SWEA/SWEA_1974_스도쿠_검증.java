@@ -69,7 +69,7 @@ public class SWEA_1974_스도쿠_검증 {
 			}
 
 			// 3 x 3 격자
-			for (int i = 0; i < N - 2; i += 3) {
+			loop: for (int i = 0; i < N - 2 && answer == 1; i += 3) {
 				for (int j = 0; j < N - 2; j += 3) {
 					pq.clear();
 
@@ -83,7 +83,7 @@ public class SWEA_1974_스도쿠_검증 {
 					for (int cnt = 1; cnt <= 9; cnt++) {
 						if (cnt != pq.poll()) {
 							answer = 0;
-							break;
+							break loop;
 						}
 					}
 				}

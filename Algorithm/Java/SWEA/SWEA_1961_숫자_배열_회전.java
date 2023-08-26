@@ -1,85 +1,57 @@
+/*
+ * SWEA 1961번 - 숫자 배열 회전 (D2)
+ * 
+ * N x N 행렬이 주어질 때,
+ * 시계 방향으로 90도, 180도, 270도 회전한 모양을 출력하라.
+ * 
+ * 다음 N줄에 걸쳐서 90도, 180도, 270도 회전한 모양을 출력한다.
+ * 입력과는 달리 출력에서는 회전한 모양 사이에만 공백이 존재함에 유의하라.
+ */
+
 import java.util.Scanner;
 
-public class Solution {
-	
-	public static int[][] turnClockwise(int[][] arr) {
-		int[][] result = new int[arr.length][arr.length];
-		
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
-				result[i][j] = arr[arr.length - j - 1][i]; 
-			}
-		}
-		
-		return result;
-	}
-
+public class SWEA_1961_숫자_배열_회전 {
 	public static void main(String[] args) {
-		/*
-		 * N x N 행열
-		 * 시계 방향으로 90도, 180도, 270도 회전한 모양 출력
-		 * (3 <= N <= 7)
-		 */
-		
-		/*
- 			123
-			456
-			789
-			
-			741	[2][0] [1][0] [0][0]
-			852 [2][1] [1][1] [0][1]
-			963 [2][2] [1][2] [0][2]
-			
-			987 [2][2] [2][1] [2][0]
-			654 [1][2] [1][1] [1][0]
-			321 [0][2] [0][1] [0][0]
-			
-			369	[0][2] [1][2] [2][2]
-			258 [0][1] [1][1] [2][1]
-			147 [0][0] [1][0] [2][0]
-		*/
-		
 		Scanner sc = new Scanner(System.in);
-		int T = sc.nextInt();
-		
-		for (int t = 0; t < T; t++) {
+		int T = sc.nextInt(); // 테스트 케이스
+
+		for (int tc = 1; tc <= T; tc++) {
 			int N = sc.nextInt();
-			int[][] mat = new int[N][N];
-			
-			for (int x = 0; x < N; x++) {
-				for (int y = 0; y < N; y++) {
-					mat[x][y] = sc.nextInt();
+			int[][] arr = new int[N][N];
+
+			// 배열 입력
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					arr[i][j] = sc.nextInt();
 				}
 			}
+			
+			System.out.println("#" + tc);
 
-			int[][] mat90 = turnClockwise(mat);
-			int[][] mat180 = turnClockwise(mat90);
-			int[][] mat270 = turnClockwise(mat180);
-			
-			System.out.println("#" + (t + 1));
-			
-			for (int x = 0; x < N; x++) {
-				for (int y = 0; y < N; y++) {
-					System.out.print(mat90[x][y]);
+			for (int i = 0; i < N; i++) {
+				// 90도
+				for (int j = N - 1; j >= 0; j--) {
+					System.out.print(arr[j][i]);
 				}
-				
+
 				System.out.print(" ");
-				
-				for (int y = 0; y < N; y++) {
-					System.out.print(mat180[x][y]);
+
+				// 180도
+				for (int j = N - 1; j >= 0; j--) {
+					System.out.print(arr[N - 1 - i][j]);
 				}
-				
+
 				System.out.print(" ");
-				
-				for (int y = 0; y < N; y++) {
-					System.out.print(mat270[x][y]);
+
+				// 270도
+				for (int j = 0; j < N; j++) {
+					System.out.print(arr[j][N - 1 - i]);
 				}
-				
-				System.out.print("\n");
+
+				System.out.println();
 			}
 		}
-		
+
 		sc.close();
 	}
-
 }
