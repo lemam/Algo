@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
@@ -5,13 +6,18 @@ import java.util.Scanner;
  * 
  * 주어진 트리를 in-order 형식으로 순회해 각 노드를 읽으면 특정 단어를 알 수 있다.
  * 주어진 트리를 in-order 형식으로 순회했을때 나오는 단어를 출력하라.
- * 트리는 완전 이진 트리 형식으로 주어지며, 노드당 하나의 문자만 저장할 수 있다.
+ * 
+ * 정점 번호는 1부터 N까지의 정수로 구분된다. 
+ * 루트 정점의 번호는 항상 1이다.
  */
 
 public class SWEA_1231_중위순회 {
-	public static void main(String[] args) {
+	private static StringBuilder sb;
+
+	public static void main(String[] args) throws IOException {
 		Scanner sc = new Scanner(System.in);
-		
+		sb = new StringBuilder();
+
 		int T = 10; // 테스트 케이스
 
 		for (int tc = 1; tc <= T; tc++) {
@@ -28,23 +34,23 @@ public class SWEA_1231_중위순회 {
 				tree[num] = word;
 			}
 
-			System.out.print("#" + tc + " ");
-			
-			// 중위 순회 출력
+			sb.append("#" + tc + " ");
+
+			// 중위 순회
 			inorder(tree, 1);
-			
-			System.out.println();
+
+			sb.append("\n");
 		}
 
+		System.out.println(sb);
 		sc.close();
 	}
 
-	// 중위 순회
-	public static void inorder(String[] tree, int i) {
-		if (i < tree.length && tree[i] != null) {
-			inorder(tree, 2 * i);
-			System.out.print(tree[i]);
-			inorder(tree, 2 * i + 1);
+	private static void inorder(String[] tree, int idx) {
+		if (idx < tree.length && tree[idx] != null) {
+			inorder(tree, idx * 2); // 왼쪽 확인
+			sb.append(tree[idx]); // 노드 출력
+			inorder(tree, idx * 2 + 1); // 오른쪽 확인
 		}
 	}
 }
