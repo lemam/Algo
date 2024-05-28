@@ -13,6 +13,14 @@
 *.vscode
 index.html
 index.js
+Main.java
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
 
 # User-specific files
 *.rsuser
