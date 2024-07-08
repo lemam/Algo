@@ -57,7 +57,7 @@ public class Pro_괄호_변환 {
             if (open == close) return i;
         }
 
-        return 0;
+        return -1;
     }
 
     private boolean checkIsCorrect(String p) {
