@@ -3,7 +3,7 @@ package Programmers;
 public class Pro_문자열_압축 {
     public int solution(String s) {
         int size = s.length();
-        int answer = 1000;
+        int answer = size;
 
         // 1부터 s의 길이까지 단위로 정하여 순회
         for (int unit = 1; unit <= size; unit++) {
