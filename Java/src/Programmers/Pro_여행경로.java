@@ -8,12 +8,12 @@ class Pro_여행경로 {
 
         // "ICN" 공항에서 출발
         sel[0] = "ICN";
-        dfs(1, 0, tickets, new boolean[tickets.length], sel);
+        dfs(1, tickets, new boolean[tickets.length], sel);
 
         return answer;
     }
 
-    private void dfs(int depth, int idx, String[][] tickets, boolean[] visited, String[] sel) {
+    private void dfs(int depth, String[][] tickets, boolean[] visited, String[] sel) {
         if (depth == sel.length) {
             if (answer == null) {
                 answer = sel.clone();
@@ -39,7 +39,7 @@ class Pro_여행경로 {
             if (sel[depth - 1].equals(tickets[i][0]) && !visited[i]) {
                 visited[i] = true;
                 sel[depth] = tickets[i][1];
-                dfs(depth + 1, i, tickets, visited, sel);
+                dfs(depth + 1, tickets, visited, sel);
                 visited[i] = false;
             }
         }
