@@ -2,15 +2,21 @@ package Programmers;
 
 import java.util.*;
 
-class Pro_전화번호_목록 {
+class Solution {
     public boolean solution(String[] phone_book) {
-        // phone_book을 오름차순 정렬한다.
-        Arrays.sort(phone_book);
+        Map<String, Integer> map = new HashMap<>();
 
-        // 앞 번호가 뒷 번호의 접두어인지 확인한다.
-        for (int i = 0; i < phone_book.length - 1; i++) {
-            if (phone_book[i + 1].startsWith(phone_book[i])) {
-                return false;
+        // 모든 전화번호를 HashMap에 넣는다.
+        for (int i = 0; i < phone_book.length; i++) {
+            map.put(phone_book[i], i);
+        }
+
+        // 모든 전화번호의 substring이 HashMap에 존재하는지 확인한다.
+        for (int i = 0; i < phone_book.length; i++) {
+            for (int j = 0; j < phone_book[i].length(); j++) {
+                if (map.containsKey(phone_book[i].substring(0, j))) {
+                    return false;
+                }
             }
         }
 
