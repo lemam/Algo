@@ -2,7 +2,7 @@ package Programmers;
 
 import java.util.*;
 
-class Solution {
+class Pro_전화번호_목록 {
     public boolean solution(String[] phone_book) {
         Map<String, Integer> map = new HashMap<>();
 
