@@ -1,107 +1,86 @@
-package Baekjoon;/*
- * 백준 13549번 - 숨바꼭질 3 (골드 5)
- * 
- * 수빈이는 동생과 숨바꼭질을 하고 있다. 
- * 수빈이는 현재 점 N(0 ≤ N ≤ 100,000)에 있고, 동생은 점 K(0 ≤ K ≤ 100,000)에 있다. 
- * 수빈이는 걷거나 순간이동을 할 수 있다. 
- * 만약, 수빈이의 위치가 X일 때 걷는다면 1초 후에 X-1 또는 X+1로 이동하게 된다. 
- * 순간이동을 하는 경우에는 0초 후에 2*X의 위치로 이동하게 된다.
- * 
- * 수빈이와 동생의 위치가 주어졌을 때, 
- * 수빈이가 동생을 찾을 수 있는 가장 빠른 시간이 몇 초 후인지 구하는 프로그램을 작성하시오.
- */
+package Baekjoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class BOJ_13549_숨바꼭질_3 {
-	private static class Node implements Comparable<Node> {
-		int dest, cost;
+    private static final int SIZE = 100001;
+    private static final int INF = 100000;
 
-		public Node(int dest, int cost) {
-			this.dest = dest;
-			this.cost = cost;
-		}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-		@Override
-		public int compareTo(Node o) {
-			return this.cost - o.cost;
-		}
-	}
+        int N = Integer.parseInt(st.nextToken());   // 수빈이의 위치
+        int K = Integer.parseInt(st.nextToken());   // 동생의 위치
 
-	private static final int SIZE = 100001;
-	private static final int INF = 100000;
+        int answer = dijkstra(N, K);
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+        System.out.println(answer);
 
-		int N = Integer.parseInt(st.nextToken()); // 수빈이의 위치
-		int K = Integer.parseInt(st.nextToken()); // 동생의 위치
+        br.close();
+    }
 
-		int answer = dijkstra(N, K);
-		
-		System.out.println(answer);
-		
-		br.close();
-	}
+    private static int dijkstra(int start, int end) {
+        // [목적지, 비용]
+        // 비용을 기준으로 오름차순 정렬된 우선순위 큐
+        PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]);
+        boolean[] visited = new boolean[SIZE];  // 방문 배열
+        int[] cost = new int[SIZE]; // 비용 배열
 
-	private static int dijkstra(int start, int end) {
-		PriorityQueue<Node> pq = new PriorityQueue<>();
-		boolean[] visited = new boolean[SIZE];
-		int[] cost = new int[SIZE];
+        // 비용 배열을 최댓값(무한)으로 설정한다.
+        Arrays.fill(cost, INF);
 
-		Arrays.fill(cost, INF);
-		cost[start] = 0;
-		pq.add(new Node(start, 0));
+        // 시작 위치 설정
+        cost[start] = 0;
+        pq.add(new int[]{start, 0});
 
-		while (!pq.isEmpty()) {
-			Node curr = pq.poll();	// 현재 위치
+        while (!pq.isEmpty()) {
+            int[] curr = pq.poll();
 
-			// 동생이 있는 위치의 도착하면 탐색을 종료한다.
-			if (curr.dest == end) break;
-				
-			// 이미 방문한 정점이면 건너뛴다.
-			if (visited[curr.dest])	continue;
+            // 동생이 있는 위치에 도착하면 종료한다.
+            if (curr[0] == end) break;
 
-			// 방문 처리
-			visited[curr.dest] = true;
+            // 이미 방문한 위치이면 건너뛴다.
+            if (visited[curr[0]]) continue;
 
-			// X-1로 이동할 경우
-			int nx = curr.dest - 1;
+            // 방문 처리
+            visited[curr[0]] = true;
 
-			if (nx >= 0 && nx < SIZE) {
-				if (cost[nx] > cost[curr.dest] + 1) {
-					cost[nx] = cost[curr.dest] + 1;
-					pq.add(new Node(nx, cost[nx]));
-				}
-			}
+            // 1. X-1로 이동할 경우
+            int nx = curr[0] - 1;
 
-			// X+1로 이동할 경우
-			nx = curr.dest + 1;
+            // 다음 이동 위치가 범위 안이고,
+            if (nx >= 0) {
+                // 다음 이동까지의 최소 비용보다 현재 이동 비용이 더 작으면 이동한다.
+                if (cost[nx] > cost[curr[0]] + 1) {
+                    cost[nx] = cost[curr[0]] + 1;
+                    pq.add(new int[]{nx, cost[nx]});
+                }
+            }
 
-			if (nx >= 0 && nx < SIZE) {
-				if (cost[nx] > cost[curr.dest] + 1) {
-					cost[nx] = cost[curr.dest] + 1;
-					pq.add(new Node(nx, cost[nx]));
-				}
-			}
+            // 2. X+1로 이동할 경우
+            nx = curr[0] + 1;
 
-			// X*2로 이동할 경우
-			nx = curr.dest * 2;
-			
-			if (nx >= 0 && nx < SIZE) {
-				if (cost[nx] > cost[curr.dest]) {
-					cost[nx] = cost[curr.dest];
-					pq.add(new Node(nx, cost[nx]));
-				}
-			}
-		}
-		
-		return cost[end];
-	}
+            if (nx < SIZE) {
+                if (cost[nx] > cost[curr[0]] + 1) {
+                    cost[nx] = cost[curr[0]] + 1;
+                    pq.add(new int[]{nx, cost[nx]});
+                }
+            }
+
+            // 3. X*2로 이동할 경우
+            nx = curr[0] * 2;
+
+            if (nx < SIZE) {
+                // 순간이동은 0초이므로 추가 비용이 없다.
+                if (cost[nx] > cost[curr[0]]) {
+                    cost[nx] = cost[curr[0]];
+                    pq.add(new int[]{nx, cost[nx]});
+                }
+            }
+        }
+
+        return cost[end];
+    }
 }
