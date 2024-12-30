@@ -1,9 +1,7 @@
 package Baekjoon;
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BOJ_16928_뱀과_사다리_게임 {
     public static void main(String[] args) throws IOException {
@@ -50,7 +48,7 @@ public class BOJ_16928_뱀과_사다리_게임 {
         queue.add(1);   // 1번부터 시작
         visited[1] = 0;
 
-        while (true) {
+        while (!queue.isEmpty()) {
             int curr = queue.poll();
 
             // 주사위가 1 ~ 6이 나오는 경우 탐색
@@ -65,11 +63,12 @@ public class BOJ_16928_뱀과_사다리_게임 {
                 queue.add(board[next]);
                 visited[board[next]] = visited[curr] + 1;
 
-                // 100이면 게임 종료이므로 주사위를 굴린 횟수를 반환한다.
+                // 100번 칸에 도착하면 게임을 종료한다.
                 if (board[next] == 100)
-                    return visited[100];
+                    break;
             }
         }
+
+        return visited[100];
     }
 }
-
