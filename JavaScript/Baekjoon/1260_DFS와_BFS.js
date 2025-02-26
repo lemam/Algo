@@ -1,6 +1,6 @@
 const fs = require('fs');
 const input = fs
-  .readFileSync('./input.txt')
+  .readFileSync('/dev/stdin')
   .toString()
   .split('\n')
   .map((el) => el.split(' ').map(Number));
