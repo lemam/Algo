@@ -18,7 +18,7 @@ for (let i = 1; i <= M; i++) {
   graph[v2].push(v1);
 }
 
-// 내림차순 정렬
+// 오름차순 정렬
 graph.forEach((el) => el.sort((a, b) => a - b));
 
 // DFS 수행
