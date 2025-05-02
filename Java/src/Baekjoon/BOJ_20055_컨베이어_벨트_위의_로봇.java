@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-public class Pro_20055_컨베이어_벨트_위의_로봇 {
+public class BOJ_20055_컨베이어_벨트_위의_로봇 {
     private static int N, K;
     private static LinkedList<Belt> conveyor;
 
