@@ -4,18 +4,11 @@ const N = Number(input);
 
 let answer = 0;
 
-for (let A = 0; A <= N; A++) {
-  for (let B = 0; B <= N; B++) {
-    for (let C = 0; C <= N; C++) {
-      if (A + B + C === N) {
-        if (A >= B + 2) {
-          if (A !== 0 && B !== 0 && C !== 0) {
-            if (C % 2 === 0) {
-              answer++;
-            }
-          }
-        }
-      }
+for (let A = 1; A <= N - 2; A++) {
+  for (let B = A + 2; B <= N - 2 - A; B++) {
+    let C = N - (A + B);
+    if (C > 0 && C % 2 === 0) {
+      answer++;
     }
   }
 }
