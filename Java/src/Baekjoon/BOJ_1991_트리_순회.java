@@ -1,102 +1,93 @@
 package Baekjoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-/*
- * 백준 1991번 - 트리 순회 (실버 1)
- * 
- * 이진 트리를 입력받아 전위 순회(preorder traversal), 중위 순회(inorder traversal), 후위 순회(postorder traversal)한 결과를 출력하는 프로그램을 작성하시오.
- * 
- * 노드의 이름은 A부터 차례대로 알파벳 대문자로 매겨지며, 항상 A가 루트 노드가 된다. 
- * 자식 노드가 없는 경우에는 .으로 표현한다.
- * 
- * 첫째 줄에 전위 순회, 둘째 줄에 중위 순회, 셋째 줄에 후위 순회한 결과를 출력한다. 
- * 각 줄에 N개의 알파벳을 공백 없이 출력하면 된다.
- */
+import java.io.*;
+import java.util.*;
 
 public class BOJ_1991_트리_순회 {
-	private static class Node {
-		char value;
-		int left, right;
+    private static class Node {
+        char value, left, right;
 
-		public Node() {
-		}
-	}
+        public Node(char value, char left, char right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
 
-	private static Node[] nodeArr;
+    private static StringBuilder sb;
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = null;
 
-		int N = Integer.parseInt(br.readLine()); // 노드의 개수
+        int N = Integer.parseInt(br.readLine());    // 노드의 개수
+        Node[] tree = new Node[N];
 
-		nodeArr = new Node[N]; // 노드 배열
+        // tree 입력
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            char node = st.nextToken().charAt(0);
+            char left = st.nextToken().charAt(0);
+            char right = st.nextToken().charAt(0);
 
-		for (int i = 0; i < N; i++)
-			nodeArr[i] = new Node();
+            tree[node - 'A'] = new Node(node, left, right);
+        }
 
-		for (int i = 0; i < N; i++) {
-			String[] input = br.readLine().split(" ");
+        sb = new StringBuilder();
 
-			// 노드 입력
-			// 알파벳 순서에 맞춰 넣는다.
-			char value = input[0].charAt(0);
-			int idx = value - 'A';
+        // 전위 순회
+        preorder(0, tree);
+        sb.append("\n");
 
-			nodeArr[idx].value = value;
+        // 중위 순회
+        inorder(0, tree);
+        sb.append("\n");
 
-			// 왼쪽 자식 노드 입력
-			if (!input[1].equals("."))
-				nodeArr[idx].left = input[1].charAt(0) - 'A';
+        // 후위 순회
+        postorder(0, tree);
 
-			// 오른쪽 자식 노드 입력
-			if (!input[2].equals("."))
-				nodeArr[idx].right = input[2].charAt(0) - 'A';
-		}
+        // 출력
+        System.out.println(sb);
 
-		preorder(0); // 전위 순회
-		System.out.println();
+        br.close();
+    }
 
-		inorder(0); // 중위 순회
-		System.out.println();
+    private static void postorder(int idx, Node[] tree) {
+        // 왼쪽으로 이동하기
+        if (tree[idx].left != '.')
+            postorder(tree[idx].left - 'A', tree);
 
-		postorder(0); // 후위 순회
+        // 오른쪽으로 이동하기
+        if (tree[idx].right != '.')
+            postorder(tree[idx].right - 'A', tree);
 
-		br.close();
-	}
+        // 노드 출력하기
+        sb.append(tree[idx].value);
+    }
 
-	// 후위 순회
-	private static void postorder(int i) {
-		if (nodeArr[i].left > 0)
-			postorder(nodeArr[i].left);
+    private static void inorder(int idx, Node[] tree) {
+        // 왼쪽으로 이동하기
+        if (tree[idx].left != '.')
+            inorder(tree[idx].left - 'A', tree);
 
-		if (nodeArr[i].right > 0)
-			postorder(nodeArr[i].right);
+        // 노드 출력하기
+        sb.append(tree[idx].value);
 
-		System.out.print(nodeArr[i].value);
-	}
+        // 오른쪽으로 이동하기
+        if (tree[idx].right != '.')
+            inorder(tree[idx].right - 'A', tree);
+    }
 
-	// 중외 순회
-	private static void inorder(int i) {
-		if (nodeArr[i].left > 0)
-			inorder(nodeArr[i].left);
+    private static void preorder(int idx, Node[] tree) {
+        // 노드 출력하기
+        sb.append(tree[idx].value);
 
-		System.out.print(nodeArr[i].value);
+        // 왼쪽으로 이동하기
+        if (tree[idx].left != '.')
+            preorder(tree[idx].left - 'A', tree);
 
-		if (nodeArr[i].right > 0)
-			inorder(nodeArr[i].right);
-	}
-
-	// 전위 순회
-	private static void preorder(int i) {
-		System.out.print(nodeArr[i].value);
-
-		if (nodeArr[i].left > 0)
-			preorder(nodeArr[i].left);
-
-		if (nodeArr[i].right > 0)
-			preorder(nodeArr[i].right);
-	}
+        // 오른쪽으로 이동하기
+        if (tree[idx].right != '.')
+            preorder(tree[idx].right - 'A', tree);
+    }
 }
