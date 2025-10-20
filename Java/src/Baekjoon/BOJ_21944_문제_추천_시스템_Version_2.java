@@ -30,7 +30,7 @@ public class BOJ_21944_문제_추천_시스템_Version_2 {
         HashMap<Integer, int[]> map = new HashMap<>();
         List<TreeSet<Problem>> subSets = new ArrayList<>();
 
-        // 100 이유?
+        // subSets 초기화
         for (int i = 0; i <= 100; i++) {
             subSets.add(new TreeSet<>());
         }
@@ -67,6 +67,7 @@ public class BOJ_21944_문제_추천_시스템_Version_2 {
                         sb.append(subSets.get(G).last().num).append("\n");
                     else if (x == -1)
                         sb.append(subSets.get(G).first().num).append("\n");
+
                     break;
                 }
                 // x가 1이면, 가장 어려운 문제 중 가장 큰 번호를 출력
@@ -124,6 +125,7 @@ public class BOJ_21944_문제_추천_시스템_Version_2 {
                     set.remove(new Problem(P, L, G));
                     subSets.get(G).remove(new Problem(P, L, G));
                     map.remove(P);
+
                     break;
                 }
             }
